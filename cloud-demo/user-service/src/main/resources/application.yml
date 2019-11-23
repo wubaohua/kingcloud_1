@@ -1,0 +1,17 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name:   com.mysql.jdbc.Driver
+    url:  jdbc:mysql:///springboot_103
+    username:  root
+    password:  root
+  application:   #和datasouce同级
+    name: user-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    fetch-registry: true
+    register-with-eureka: true

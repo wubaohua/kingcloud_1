@@ -1,0 +1,8 @@
+/cloud-demo/eureka-server/target
+/cloud-demo/eureka-server/*.iml
+/cloud-demo/user-consumer/target
+/cloud-demo/user-consumer/*.iml
+/cloud-demo/user-service/target
+/cloud-demo/user-service/*.iml
+/cloud-demo/zuul-demo/target
+/cloud-demo/zuul-demo/*.iml

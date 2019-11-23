@@ -1,0 +1,13 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: eureka-server   #表明身份
+eureka:
+  client:
+    service-url: #源码是一个map形式的键值对
+      defaultZone:   http://127.0.0.1:10087/eureka
+    fetch-registry:  true
+    register-with-eureka: true
+  server:
+    enable-self-preservation: false  #失去自我保护机制

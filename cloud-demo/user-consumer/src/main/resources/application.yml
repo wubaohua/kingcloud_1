@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+application:   #和datasouce同级
+  name: user-consumer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds:6000          #服务默认时间是1秒,是给方法的反应时间,我们可以进行自定义
+circuitBreaker:   #体现服务熔断机制
+  requestVolumeThreshold: 10   # 默认20次，这里修成成了10次
+  sleepWindowInMilliseconds: 20000   #时间的区间 默认的是每隔5秒，这里修改成10秒
+  errorThresholdPercentage: 50       # 错误率50%
+ribbon:                     #开启了feign的负载均衡  ,默认是轮询机制
+  ReadTimeout: 2000 # 数据通信超时时长 方法的执行时间2秒
+  ConnectTimeout: 500 # 连接超时时长   0.5秒
+  MaxAutoRetries: 0 # 当前服务器的重试次数
+  MaxAutoRetriesNextServer: 1 # 重试多少次服务
+  OkToRetryOnAllOperations: false # 是否对所有的请求方式都重试 false是只对get请求生效
+# 幂等性的问题 post  put delete  get
+# 多次请求对结果的影响是否一致 如果一致就是幂等 get post新增
+
+
+feign:
+  hystrix:
+    enabled: true # 开启Feign的熔断功能
+    # feigin单独的日志功能
+logging:
+  level:
+    com.leyou: debug

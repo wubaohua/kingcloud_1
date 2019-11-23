@@ -1,0 +1,30 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: zuul-demo
+eureka:
+  client:
+    service-url:
+        defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    #拉取服务和注册不在写,因为默认是拉取和注册的
+zuul:
+  ignored-services:        #是一个集合,可以写多个被忽略的服务  集合的形式用 - 来表示
+    -  eureka-server
+  prefix: /abc
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+ribbon:
+  ConnectTimeout: 1000
+  ReadTimeout: 2000
+  MaxAutoRetries: 0     #要不要重试
+  MaxAutoRetriesNextServer: 1    #要不要连接下一台服务器
+
+
