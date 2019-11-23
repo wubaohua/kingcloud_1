@@ -43,4 +43,9 @@ public class MyFilter extends ZuulFilter {
         }
         return null;//表示正常进入到微服务了
     }
+	@Test
+	public void test(){
+		System.out println("张三的方法")
+		
+	}
 }
